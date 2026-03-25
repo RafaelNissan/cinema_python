@@ -18,6 +18,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import APP_NAME, APP_VERSION
 from modules.relatorios import Relatorios
 from database.connection import DatabaseConnection
+from gui.sales_view import SalesView
 
 STYLE_SHEET = """
 QMainWindow {
@@ -136,7 +137,7 @@ class MainWindow(QMainWindow):
 
         # Menu Buttons
         menus = [
-            ("💰 Nova Venda", self.em_desenvolvimento),
+            ("💰 Nova Venda", self.abrir_pdv),
             ("📋 Histórico de Vendas", self.em_desenvolvimento),
             ("📦 Gerenciar Estoque", self.em_desenvolvimento),
             ("🎬 Filmes e Sessões", self.em_desenvolvimento),
@@ -211,7 +212,7 @@ class MainWindow(QMainWindow):
         
         btn_venda = QPushButton("🎫 Iniciar PDV")
         btn_venda.setProperty("class", "ActionBtn")
-        btn_venda.clicked.connect(self.em_desenvolvimento)
+        btn_venda.clicked.connect(self.abrir_pdv)
         
         btn_filme = QPushButton("🎬 Novo Filme")
         btn_filme.setProperty("class", "ActionBtn")
@@ -274,6 +275,13 @@ class MainWindow(QMainWindow):
 
         except Exception as e:
             print(f"Erro ao atualizar dashboard: {e}")
+
+    def abrir_pdv(self):
+        """Abre o módulo de Ponto de Venda"""
+        dialog = SalesView(self)
+        dialog.exec()
+        # Após o fechamento do PDV, atualizamos o dashboard
+        self.atualizar_dashboard()
 
     def em_desenvolvimento(self):
         QMessageBox.information(
