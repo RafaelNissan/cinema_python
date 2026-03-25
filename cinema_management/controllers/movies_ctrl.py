@@ -75,11 +75,17 @@ class MoviesController:
         try:
             data_hora = datetime.strptime(data_hora_str, "%d/%m/%Y %H:%M")
             with get_db() as db:
+                # Buscar a sala para saber a capacidade total
+                sala = db.query(Sala).filter(Sala.id == int(sala_id)).first()
+                if not sala:
+                    return False, "Sala não encontrada."
+
                 sessao = Sessao(
                     filme_id=int(filme_id),
                     sala_id=int(sala_id),
                     data_hora=data_hora,
-                    preco_base=float(preco_base)
+                    preco_base=float(preco_base),
+                    assentos_disponiveis=sala.capacidade
                 )
                 db.add(sessao)
                 db.commit()
