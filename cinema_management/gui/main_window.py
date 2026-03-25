@@ -23,7 +23,7 @@ from gui.inventory_view import InventoryView
 
 STYLE_SHEET = """
 QMainWindow {
-    background-color: #f0f2f5;
+    background-color: #0f172a;
 }
 QFrame#SideBar {
     background-color: #1e293b;
@@ -63,22 +63,23 @@ QPushButton.ActionBtn:hover {
     background-color: #2563eb;
 }
 QFrame.Card {
-    background-color: white;
+    background-color: #1e293b;
     border-radius: 10px;
+    border: 1px solid #334155;
 }
 QLabel.CardTitle {
-    color: #64748b;
+    color: #94a3b8;
     font-size: 13px;
     font-weight: bold;
     text-transform: uppercase;
 }
 QLabel.CardValue {
-    color: #0f172a;
+    color: #f8fafc;
     font-size: 26px;
     font-weight: bold;
 }
 QLabel#HeaderTitle {
-    color: #0f172a;
+    color: #f8fafc;
     font-size: 24px;
     font-weight: bold;
 }

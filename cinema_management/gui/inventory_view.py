@@ -12,20 +12,41 @@ from controllers.inventory_ctrl import InventoryController
 
 STYLE_SHEET_INVENTORY = """
 QDialog {
-    background-color: #f8fafc;
+    background-color: #0f172a;
+    color: #f8fafc;
+}
+QLabel {
+    color: #f8fafc;
+}
+QLineEdit, QComboBox {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    padding: 8px;
+    border-radius: 4px;
+    color: #f8fafc;
 }
 QTableWidget {
-    background-color: white;
-    border: 1px solid #cbd5e1;
+    background-color: #1e293b;
+    border: 1px solid #334155;
     border-radius: 4px;
+    color: #f8fafc;
+    gridline-color: #334155;
     selection-background-color: #3b82f6;
 }
 QHeaderView::section {
-    background-color: #f1f5f9;
+    background-color: #334155;
+    color: #f8fafc;
     font-weight: bold;
     padding: 5px;
-    border-bottom: 2px solid #cbd5e1;
+    border-bottom: 2px solid #1e293b;
 }
+QPushButton {
+    background-color: #334155;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+QPushButton:hover { background-color: #475569; }
 QPushButton.PrimaryBtn {
     background-color: #3b82f6;
     color: white;

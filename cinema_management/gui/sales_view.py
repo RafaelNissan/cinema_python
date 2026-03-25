@@ -13,30 +13,44 @@ from config import FORMAS_PAGAMENTO, TIPOS_INGRESSO
 
 STYLE_SHEET_PDV = """
 QDialog {
-    background-color: #f8fafc;
+    background-color: #0f172a;
+    color: #f8fafc;
+}
+QLabel {
+    color: #f8fafc;
 }
 QTableWidget {
-    background-color: white;
-    border: 1px solid #cbd5e1;
+    background-color: #1e293b;
+    border: 1px solid #334155;
     border-radius: 4px;
+    color: #f8fafc;
+    gridline-color: #334155;
     selection-background-color: #3b82f6;
 }
 QHeaderView::section {
-    background-color: #f1f5f9;
+    background-color: #334155;
+    color: #f8fafc;
     border: none;
-    border-bottom: 2px solid #cbd5e1;
+    border-bottom: 2px solid #1e293b;
     padding: 6px;
     font-weight: bold;
 }
 QFrame.CartPanel {
-    background-color: white;
-    border-left: 2px solid #cbd5e1;
+    background-color: #1e293b;
+    border-left: 2px solid #334155;
 }
 QLabel#TotalLabel {
     font-size: 28px;
     font-weight: bold;
-    color: #16a34a;
+    color: #10b981;
 }
+QPushButton {
+    background-color: #334155;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+QPushButton:hover { background-color: #475569; }
 QPushButton.AddBtn {
     background-color: #3b82f6;
     color: white;
@@ -46,14 +60,25 @@ QPushButton.AddBtn {
 }
 QPushButton.AddBtn:hover { background-color: #2563eb; }
 QPushButton.FinishBtn {
-    background-color: #16a34a;
+    background-color: #10b981;
     color: white;
     font-weight: bold;
     font-size: 16px;
     padding: 15px;
     border-radius: 6px;
 }
-QPushButton.FinishBtn:hover { background-color: #15803d; }
+QPushButton.FinishBtn:hover { background-color: #059669; }
+QComboBox {
+    background-color: #334155;
+    color: white;
+    border: 1px solid #475569;
+    padding: 5px;
+    border-radius: 4px;
+}
+QComboBox QAbstractItemView {
+    background-color: #334155;
+    color: white;
+}
 """
 
 class SalesView(QDialog):
