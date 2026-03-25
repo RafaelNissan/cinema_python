@@ -19,6 +19,7 @@ from config import APP_NAME, APP_VERSION
 from modules.relatorios import Relatorios
 from database.connection import DatabaseConnection
 from gui.sales_view import SalesView
+from gui.inventory_view import InventoryView
 
 STYLE_SHEET = """
 QMainWindow {
@@ -139,7 +140,7 @@ class MainWindow(QMainWindow):
         menus = [
             ("💰 Nova Venda", self.abrir_pdv),
             ("📋 Histórico de Vendas", self.em_desenvolvimento),
-            ("📦 Gerenciar Estoque", self.em_desenvolvimento),
+            ("📦 Gerenciar Estoque", self.abrir_estoque),
             ("🎬 Filmes e Sessões", self.em_desenvolvimento),
             ("📊 Relatórios", self.em_desenvolvimento),
             ("⚙️ Configurações", self.em_desenvolvimento)
@@ -281,6 +282,12 @@ class MainWindow(QMainWindow):
         dialog = SalesView(self)
         dialog.exec()
         # Após o fechamento do PDV, atualizamos o dashboard
+        self.atualizar_dashboard()
+
+    def abrir_estoque(self):
+        """Abre o módulo de Gestão de Estoque"""
+        dialog = InventoryView(self)
+        dialog.exec()
         self.atualizar_dashboard()
 
     def em_desenvolvimento(self):
