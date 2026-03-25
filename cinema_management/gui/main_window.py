@@ -21,6 +21,7 @@ from database.connection import DatabaseConnection
 from gui.sales_view import SalesView
 from gui.inventory_view import InventoryView
 from gui.movies_view import MoviesView
+from gui.reports_view import ReportsView
 
 STYLE_SHEET = """
 QMainWindow {
@@ -144,7 +145,7 @@ class MainWindow(QMainWindow):
             ("📋 Histórico de Vendas", self.em_desenvolvimento),
             ("📦 Gerenciar Estoque", self.abrir_estoque),
             ("🎬 Filmes e Sessões", self.abrir_filmes),
-            ("📊 Relatórios", self.em_desenvolvimento),
+            ("📊 Relatórios", self.abrir_relatorios),
             ("⚙️ Configurações", self.em_desenvolvimento)
         ]
 
@@ -297,6 +298,11 @@ class MainWindow(QMainWindow):
         dialog = MoviesView(self)
         dialog.exec()
         self.atualizar_dashboard()
+
+    def abrir_relatorios(self):
+        """Abre o Dashboard Financeiro"""
+        dialog = ReportsView(self)
+        dialog.exec()
 
     def em_desenvolvimento(self):
         QMessageBox.information(
