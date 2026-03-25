@@ -29,15 +29,10 @@ def setup_database():
         print("  3. O usuário tem permissões adequadas?")
         return False
 
-    # Criar schema se necessário
+    # Criar schema se necessário via SQLAlchemy
     print("\n🗄️  Criando/atualizando estrutura do banco de dados...")
-    schema_path = Path(__file__).parent / "database" / "schema.sql"
-
-    if not schema_path.exists():
-        print(f"❌ Erro: Arquivo schema.sql não encontrado em {schema_path}")
-        return False
-
-    if DatabaseConnection.create_database_schema(str(schema_path)):
+    
+    if DatabaseConnection.create_database_schema():
         print("✅ Banco de dados configurado com sucesso!")
         return True
     else:
