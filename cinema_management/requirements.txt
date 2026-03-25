@@ -1,0 +1,12 @@
+# requirements.txt
+# Dependências do CineManager Pro
+
+# Banco de Dados
+mysql-connector-python==8.2.0
+
+# Interface Gráfica (Tkinter já vem com Python)
+# Pillow para trabalhar com imagens se necessário
+Pillow==10.1.0
+
+# Utilitários
+python-dotenv==1.0.0

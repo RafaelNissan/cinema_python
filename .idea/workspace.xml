@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3ddbb58a-75af-4461-ab23-899e1aeda4fb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/gith estudo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/CinePython.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/database/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/database/connection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/database/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/gui/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/gui/main_window.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/modules/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/modules/relatorios.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cinema_management/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/database.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/routes/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/routes/auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/routes/dominios.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/routes/envios.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/routes/smtp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/routes/status.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/security.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/services/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/services/domain_validator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/services/email_sender.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/services/queue_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/services/quota_manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/services/smtp_rotator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/services/webhook_sender.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/workers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api_email_service/app/workers/email_worker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../requirements.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3BM9U5jwcYMELaUd1FGpxYhJFk8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "git-widget-placeholder": "master"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\RAFAEL\Documents\gith estudo\CinePython\cinema_management" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="config" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CinePython" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cinema_management" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cinema_management/config.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CinePython" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cinema_management" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cinema_management/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.config" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-4e2b1448bda8-9a97661f3031-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.27397.106" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3ddbb58a-75af-4461-ab23-899e1aeda4fb" name="Changes" comment="" />
+      <created>1774288084445</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774288084445</updated>
+    </task>
+    <servers />
+  </component>
+</project>
