@@ -20,6 +20,7 @@ from modules.relatorios import Relatorios
 from database.connection import DatabaseConnection
 from gui.sales_view import SalesView
 from gui.inventory_view import InventoryView
+from gui.movies_view import MoviesView
 
 STYLE_SHEET = """
 QMainWindow {
@@ -142,7 +143,7 @@ class MainWindow(QMainWindow):
             ("💰 Nova Venda", self.abrir_pdv),
             ("📋 Histórico de Vendas", self.em_desenvolvimento),
             ("📦 Gerenciar Estoque", self.abrir_estoque),
-            ("🎬 Filmes e Sessões", self.em_desenvolvimento),
+            ("🎬 Filmes e Sessões", self.abrir_filmes),
             ("📊 Relatórios", self.em_desenvolvimento),
             ("⚙️ Configurações", self.em_desenvolvimento)
         ]
@@ -218,7 +219,7 @@ class MainWindow(QMainWindow):
         
         btn_filme = QPushButton("🎬 Novo Filme")
         btn_filme.setProperty("class", "ActionBtn")
-        btn_filme.clicked.connect(self.em_desenvolvimento)
+        btn_filme.clicked.connect(self.abrir_filmes)
 
         actions_layout.addWidget(btn_venda)
         actions_layout.addWidget(btn_filme)
@@ -288,6 +289,12 @@ class MainWindow(QMainWindow):
     def abrir_estoque(self):
         """Abre o módulo de Gestão de Estoque"""
         dialog = InventoryView(self)
+        dialog.exec()
+        self.atualizar_dashboard()
+
+    def abrir_filmes(self):
+        """Abre o módulo de Gestão de Filmes e Sessões"""
+        dialog = MoviesView(self)
         dialog.exec()
         self.atualizar_dashboard()
 
