@@ -34,6 +34,7 @@ class Sessao(Base):
     sala_id = Column(Integer, ForeignKey('salas.id'))
     data_hora = Column(DateTime, nullable=False)
     preco_base = Column(Float, nullable=False)
+    assentos_disponiveis = Column(Integer, default=0)
     
     filme = relationship("Filme")
     sala = relationship("Sala")
