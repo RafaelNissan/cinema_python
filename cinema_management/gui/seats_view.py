@@ -11,15 +11,15 @@ from controllers.sales_ctrl import SalesController
 
 STYLE_SHEETS_SEATS = """
 QDialog {
-    background-color: #0f172a;
+    background-color: #020617;
     color: #f8fafc;
 }
 QLabel {
     color: #f8fafc;
 }
 QPushButton#SeatBtn {
-    background-color: #334155;
-    color: white;
+    background-color: #1e293b;
+    color: #94a3b8;
     border: none;
     border-radius: 20px;
     font-weight: bold;
@@ -27,21 +27,15 @@ QPushButton#SeatBtn {
     height: 40px;
     min-width: 40px;
     min-height: 40px;
+    font-size: 13px;
 }
-QPushButton#SeatBtn:hover { background-color: #475569; }
-QPushButton#SeatBtn[occupied="true"] {
-    background-color: #ef4444;
-    color: #fee2e2;
-}
-QPushButton#SeatBtn[selected="true"] {
-    background-color: #22c55e;
-    color: #000000;
-    font-weight: 900;
+QPushButton#SeatBtn:hover { 
+    background-color: #334155; 
+    color: white;
 }
 QFrame#Screen {
-    background-color: #3b82f6;
-    border-radius: 20px;
-    height: 10px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #60a5fa, stop:1 #2563eb);
+    border-radius: 6px;
 }
 """
 
@@ -105,7 +99,7 @@ class SeatSelectionDialog(QDialog):
                     btn.setStyleSheet("background-color: #ef4444; color: #fee2e2; border-radius: 20px;")
                     btn.setToolTip("Ocupado")
                 else:
-                    btn.setStyleSheet("background-color: #334155; color: white; border-radius: 20px;")
+                    btn.setStyleSheet("background-color: #1e293b; color: #94a3b8; border-radius: 20px;")
                     btn.clicked.connect(lambda checked, s=seat_id, b=btn: self.on_seat_clicked(s, b))
                 
                 self.grid_layout.addWidget(btn, r_idx, c_idx)
@@ -130,7 +124,7 @@ class SeatSelectionDialog(QDialog):
         # Status Legend
         legend_layout = QHBoxLayout()
         legend_layout.addStretch()
-        legend_layout.addWidget(self.create_legend_item("Livre", "#334155"))
+        legend_layout.addWidget(self.create_legend_item("Livre", "#1e293b"))
         legend_layout.addWidget(self.create_legend_item("Ocupado", "#ef4444"))
         legend_layout.addWidget(self.create_legend_item("Selecionado", "#22c55e"))
         legend_layout.addStretch()
@@ -162,11 +156,11 @@ class SeatSelectionDialog(QDialog):
                 if w.property("occupied") == "true":
                     w.setStyleSheet("background-color: #ef4444; color: #fee2e2; border-radius: 20px; font-weight: bold;")
                 else:
-                    w.setStyleSheet("background-color: #334155; color: white; border-radius: 20px; font-weight: bold;")
+                    w.setStyleSheet("background-color: #1e293b; color: #94a3b8; border-radius: 20px; font-weight: bold;")
         
         # Aplicar o verde vibrante no selecionado
         self.selected_seat = seat_id
-        button.setStyleSheet("background-color: #22c55e; color: black; border-radius: 20px; font-weight: 900; border: 2px solid white;")
+        button.setStyleSheet("background-color: #22c55e; color: black; border-radius: 20px; font-weight: 900; border: 2px solid #f0fdf4;")
         
         self.btn_confirmar.setEnabled(True)
         self.btn_confirmar.setText(f"Confirmar Assento: {seat_id}")
