@@ -66,6 +66,10 @@ QHeaderView::section {
     text-transform: uppercase;
     font-size: 11px;
 }
+QTableCornerButton::section {
+    background-color: #0a0a0a;
+    border: none;
+}
 QPushButton {
     background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #0ea5e9, stop:1 #2563eb);
     color: white;

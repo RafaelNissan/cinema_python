@@ -47,6 +47,10 @@ QHeaderView::section {
     text-transform: uppercase;
     font-size: 11px;
 }
+QTableCornerButton::section {
+    background-color: #0a0a0a;
+    border: none;
+}
 QPushButton {
     background-color: #111827;
     color: #ffffff;
