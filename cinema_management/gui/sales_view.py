@@ -242,13 +242,20 @@ class SalesView(QDialog):
         self.update_cart_view()
 
     def remove_from_cart(self):
-        row = self.tbl_cart.currentRow()
-        if row < 0:
-            QMessageBox.warning(self, "Aviso", "Selecione um item no carrinho para remover.")
+        to_remove = []
+        for row in range(self.tbl_cart.rowCount()):
+            item = self.tbl_cart.item(row, 0)
+            if item and item.checkState() == Qt.CheckState.Checked:
+                to_remove.append(row)
+                
+        if not to_remove:
+            QMessageBox.warning(self, "Aviso", "Marque pelo menos um item no checkbox para remover.")
             return
             
-        item_removido = self.carrinho.pop(row)
-        QMessageBox.information(self, "Removido", f"Item removido do carrinho.")
+        # Remover iterando de trás pra frente para não bagunçar os índices
+        for row in reversed(to_remove):
+            self.carrinho.pop(row)
+            
         self.update_cart_view()
 
     def update_cart_view(self):
@@ -259,7 +266,11 @@ class SalesView(QDialog):
             row = self.tbl_cart.rowCount()
             self.tbl_cart.insertRow(row)
             
-            self.tbl_cart.setItem(row, 0, QTableWidgetItem(item['nome']))
+            chk_item = QTableWidgetItem(item['nome'])
+            chk_item.setFlags(Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled)
+            chk_item.setCheckState(Qt.CheckState.Unchecked)
+            self.tbl_cart.setItem(row, 0, chk_item)
+            
             if item['tipo_item'] == 'ingresso':
                 self.tbl_cart.setItem(row, 1, QTableWidgetItem(item['tipo']))
             else:

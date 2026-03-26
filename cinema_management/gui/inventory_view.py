@@ -183,7 +183,11 @@ class InventoryView(QDialog):
             row = self.tbl_produtos.rowCount()
             self.tbl_produtos.insertRow(row)
             
-            self.tbl_produtos.setItem(row, 0, QTableWidgetItem(str(p['id'])))
+            chk_id = QTableWidgetItem(str(p['id']))
+            chk_id.setFlags(Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled)
+            chk_id.setCheckState(Qt.CheckState.Unchecked)
+            self.tbl_produtos.setItem(row, 0, chk_id)
+            
             self.tbl_produtos.setItem(row, 1, QTableWidgetItem(p['nome']))
             self.tbl_produtos.setItem(row, 2, QTableWidgetItem(p['categoria']))
             
@@ -224,22 +228,29 @@ class InventoryView(QDialog):
                 QMessageBox.critical(self, "Erro", msg)
 
     def remover_codigo(self):
-        row = self.tbl_produtos.currentRow()
-        if row < 0:
-            QMessageBox.warning(self, "Aviso", "Selecione um produto primeiro.")
+        to_remove = []
+        names = []
+        for row in range(self.tbl_produtos.rowCount()):
+            item = self.tbl_produtos.item(row, 0)
+            if item and item.checkState() == Qt.CheckState.Checked:
+                to_remove.append(item.text())
+                names.append(self.tbl_produtos.item(row, 1).text())
+                
+        if not to_remove:
+            QMessageBox.warning(self, "Aviso", "Marque pelo menos um produto pelo checkbox para remover.")
             return
             
-        prod_id = self.tbl_produtos.item(row, 0).text()
-        prod_nome = self.tbl_produtos.item(row, 1).text()
-        
+        nomes_str = ", ".join(names)
+        mensagem = f"Tem certeza que deseja apagar {len(to_remove)} produto(s)?\n{nomes_str}"
+        if len(mensagem) > 300:
+            mensagem = f"Tem certeza que deseja apagar {len(to_remove)} produto(s)?"
+            
         reply = QMessageBox.question(self, 'Confirmar', 
-                                     f'Tem certeza que deseja apagar "{prod_nome}"?\nO histórico financeiro de vendas anteriores e impostos será mantido seguro.',
+                                     mensagem + '\nO histórico financeiro e estoque serão mantidos no sistema.',
                                      QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No, QMessageBox.StandardButton.No)
         
         if reply == QMessageBox.StandardButton.Yes:
-            success, msg = InventoryController.delete_product(prod_id)
-            if success:
-                QMessageBox.information(self, "Sucesso", msg)
-                self.load_data()
-            else:
-                QMessageBox.critical(self, "Erro", msg)
+            for prod_id in to_remove:
+                InventoryController.delete_product(prod_id)
+            QMessageBox.information(self, "Sucesso", f"{len(to_remove)} produto(s) removido(s) com sucesso!")
+            self.load_data()
