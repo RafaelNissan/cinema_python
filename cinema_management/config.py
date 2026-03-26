@@ -39,7 +39,7 @@ FORMAS_PAGAMENTO = [
 
 # configuração gerais
 
-APP_NAME = "CineManeger PRO"
+APP_NAME = "Cine-Pena"
 APP_VERSION = "1.0"
 CURRENCY = "R$"
 

@@ -151,6 +151,7 @@ class SalesView(QDialog):
         catalog_layout.addLayout(ticket_type_layout)
         
         self.tbl_sessoes = QTableWidget(0, 5)
+        self.tbl_sessoes.verticalHeader().setDefaultSectionSize(45)
         self.tbl_sessoes.setHorizontalHeaderLabels(["Filme", "Sala", "Horário", "Preço", "Ação"])
         self.tbl_sessoes.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.tbl_sessoes.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
@@ -161,6 +162,7 @@ class SalesView(QDialog):
         catalog_layout.addWidget(lbl_bomboniere)
         
         self.tbl_produtos = QTableWidget(0, 4)
+        self.tbl_produtos.verticalHeader().setDefaultSectionSize(45)
         self.tbl_produtos.setHorizontalHeaderLabels(["Produto", "Categoria", "Preço", "Ação"])
         self.tbl_produtos.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.tbl_produtos.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
