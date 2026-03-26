@@ -48,6 +48,12 @@ QTableCornerButton::section {
     background-color: #0a0a0a;
     border: none;
 }
+QHeaderView::section:horizontal {
+    border-left: 1px solid #1a1a1a;
+}
+QHeaderView::section:horizontal:first {
+    border-left: none;
+}
 QFrame.CartPanel {
     background-color: #0a0a0a;
     border-left: 1px solid #1a1a1a;
@@ -75,10 +81,11 @@ QPushButton.AddBtn {
     color: white;
     font-weight: 900;
     min-width: 100px;
-    min-height: 35px;
+    min-height: 38px;
     border: none;
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 9px;
+    padding: 0 5px;
 }
 QPushButton.AddBtn:hover { background: #38bdf8; }
 QPushButton.FinishBtn {
@@ -151,8 +158,11 @@ class SalesView(QDialog):
         catalog_layout.addLayout(ticket_type_layout)
         
         self.tbl_sessoes = QTableWidget(0, 5)
-        self.tbl_sessoes.verticalHeader().setDefaultSectionSize(45)
+        self.tbl_sessoes.verticalHeader().setVisible(False)
+        self.tbl_sessoes.verticalHeader().setDefaultSectionSize(50)
         self.tbl_sessoes.setHorizontalHeaderLabels(["Filme", "Sala", "Horário", "Preço", "Ação"])
+        self.tbl_sessoes.setColumnWidth(4, 120)
+        self.tbl_sessoes.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
         self.tbl_sessoes.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.tbl_sessoes.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         catalog_layout.addWidget(self.tbl_sessoes)
@@ -162,8 +172,11 @@ class SalesView(QDialog):
         catalog_layout.addWidget(lbl_bomboniere)
         
         self.tbl_produtos = QTableWidget(0, 4)
-        self.tbl_produtos.verticalHeader().setDefaultSectionSize(45)
+        self.tbl_produtos.verticalHeader().setVisible(False)
+        self.tbl_produtos.verticalHeader().setDefaultSectionSize(50)
         self.tbl_produtos.setHorizontalHeaderLabels(["Produto", "Categoria", "Preço", "Ação"])
+        self.tbl_produtos.setColumnWidth(3, 120)
+        self.tbl_produtos.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
         self.tbl_produtos.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.tbl_produtos.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         catalog_layout.addWidget(self.tbl_produtos)
