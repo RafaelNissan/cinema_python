@@ -3,13 +3,13 @@ import os
 from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QWidget, QLabel, 
     QTableWidget, QTableWidgetItem, QHeaderView, QPushButton,
-    QComboBox, QMessageBox, QFrame, QGridLayout, QSplitter
+    QComboBox, QMessageBox, QFrame, QSplitter
 )
 from PyQt6.QtCore import Qt
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controllers.sales_ctrl import SalesController
-from config import FORMAS_PAGAMENTO, TIPOS_INGRESSO
+from config import FORMAS_PAGAMENTO
 
 STYLE_SHEET_PDV = """
 QDialog {
@@ -88,8 +88,7 @@ class SalesView(QDialog):
         self.resize(1000, 700)
         self.setStyleSheet(STYLE_SHEET_PDV)
         
-        self.cart_ingressos = []
-        self.cart_produtos = []
+        self.carrinho = []
         
         self.setup_ui()
         self.load_data()
@@ -139,11 +138,16 @@ class SalesView(QDialog):
         lbl_carrinho.setStyleSheet("font-size: 18px; font-weight: bold;")
         cart_layout.addWidget(lbl_carrinho)
         
-        self.tbl_carrinho = QTableWidget(0, 3)
-        self.tbl_carrinho.setHorizontalHeaderLabels(["Item", "Qtd/Tipo", "Valor"])
-        self.tbl_carrinho.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
-        self.tbl_carrinho.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
-        cart_layout.addWidget(self.tbl_carrinho)
+        self.tbl_cart = QTableWidget(0, 3)
+        self.tbl_cart.setHorizontalHeaderLabels(["Item", "Qtd/Tipo", "Valor"])
+        self.tbl_cart.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        self.tbl_cart.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        cart_layout.addWidget(self.tbl_cart)
+        
+        btn_remover_carrinho = QPushButton("🗑️ Remover Item Selecionado")
+        btn_remover_carrinho.setStyleSheet("background-color: #ef4444; color: white; padding: 8px; border-radius: 4px; font-weight: bold;")
+        btn_remover_carrinho.clicked.connect(self.remove_from_cart)
+        cart_layout.addWidget(btn_remover_carrinho)
         
         # Totals
         self.lbl_total = QLabel("Total: R$ 0,00")
@@ -190,7 +194,6 @@ class SalesView(QDialog):
             
             btn_add = QPushButton("Adicionar")
             btn_add.setProperty("class", "AddBtn")
-            # Connect explicitly taking a local capture
             btn_add.clicked.connect(lambda checked, session=s: self.add_session_to_cart(session))
             self.tbl_sessoes.setCellWidget(row, 4, btn_add)
             
@@ -210,69 +213,84 @@ class SalesView(QDialog):
             self.tbl_produtos.setCellWidget(row, 3, btn_add)
 
     def add_session_to_cart(self, session):
-        # Aqui, na vida real seria aberto uma tela de escolher o tipo Ingress/Meia e a Cadeira
-        # Por simplicidade, vamos simular que estamos adicionando INTEIRA sem cadeira
         item = {
+            'tipo_item': 'ingresso',
             'sessao_id': session['id'],
             'nome': f"Ing. {session['filme']} ({session['horario']})",
             'preco_base': session['preco'],
-            'tipo': 'INTEIRA' # Pode ser adaptado num dialog
+            'tipo': 'INTEIRA',
+            'quantidade': 1
         }
-        self.cart_ingressos.append(item)
-        self.update_cart()
+        self.carrinho.append(item)
+        self.update_cart_view()
 
     def add_product_to_cart(self, product):
-        # Verifica se já está no carrinho
-        for item in self.cart_produtos:
-            if item['id'] == product['id']:
+        for item in self.carrinho:
+            if item.get('tipo_item') == 'produto' and item.get('id') == product['id']:
                 item['quantidade'] += 1
-                self.update_cart()
+                self.update_cart_view()
                 return
                 
         item = {
+            'tipo_item': 'produto',
             'id': product['id'],
             'nome': product['nome'],
-            'preco': product['preco'],
+            'preco_base': product['preco'],
             'quantidade': 1
         }
-        self.cart_produtos.append(item)
-        self.update_cart()
-        
-    def update_cart(self):
-        self.tbl_carrinho.setRowCount(0)
-        
-        for ing in self.cart_ingressos:
-            row = self.tbl_carrinho.rowCount()
-            self.tbl_carrinho.insertRow(row)
-            self.tbl_carrinho.setItem(row, 0, QTableWidgetItem(ing['nome']))
-            self.tbl_carrinho.setItem(row, 1, QTableWidgetItem(ing['tipo']))
-            self.tbl_carrinho.setItem(row, 2, QTableWidgetItem(f"R$ {ing['preco_base']:.2f}"))
+        self.carrinho.append(item)
+        self.update_cart_view()
+
+    def remove_from_cart(self):
+        row = self.tbl_cart.currentRow()
+        if row < 0:
+            QMessageBox.warning(self, "Aviso", "Selecione um item no carrinho para remover.")
+            return
             
-        for prod in self.cart_produtos:
-            row = self.tbl_carrinho.rowCount()
-            self.tbl_carrinho.insertRow(row)
-            self.tbl_carrinho.setItem(row, 0, QTableWidgetItem(prod['nome']))
-            self.tbl_carrinho.setItem(row, 1, QTableWidgetItem(f"{prod['quantidade']}x"))
-            self.tbl_carrinho.setItem(row, 2, QTableWidgetItem(f"R$ {float(prod['preco']) * prod['quantidade']:.2f}"))
+        item_removido = self.carrinho.pop(row)
+        QMessageBox.information(self, "Removido", f"Item removido do carrinho.")
+        self.update_cart_view()
+
+    def update_cart_view(self):
+        self.tbl_cart.setRowCount(0)
+        subtotal = 0.0
+        
+        for idx, item in enumerate(self.carrinho):
+            row = self.tbl_cart.rowCount()
+            self.tbl_cart.insertRow(row)
             
-        totais = SalesController.calculate_totals(self.cart_ingressos, self.cart_produtos)
-        self.lbl_total.setText(f"Total: R$ {totais['subtotal']:.2f}")
+            self.tbl_cart.setItem(row, 0, QTableWidgetItem(item['nome']))
+            if item['tipo_item'] == 'ingresso':
+                self.tbl_cart.setItem(row, 1, QTableWidgetItem(item['tipo']))
+            else:
+                self.tbl_cart.setItem(row, 1, QTableWidgetItem(f"{item['quantidade']}x"))
+            
+            valor = float(item['preco_base']) * item['quantidade']
+            subtotal += valor
+            self.tbl_cart.setItem(row, 2, QTableWidgetItem(f"R$ {valor:.2f}"))
+            
+        self.lbl_total.setText(f"Total: R$ {subtotal:.2f}")
 
     def clear_cart(self):
-        self.cart_ingressos = []
-        self.cart_produtos = []
-        self.update_cart()
+        self.carrinho = []
+        self.update_cart_view()
 
     def finalize_sale(self):
-        if not self.cart_ingressos and not self.cart_produtos:
+        if not self.carrinho:
             QMessageBox.warning(self, "Aviso", "Carrinho está vazio.")
             return
             
+        cart_ingressos = [i for i in self.carrinho if i['tipo_item'] == 'ingresso']
+        cart_produtos = [i for i in self.carrinho if i['tipo_item'] == 'produto']
+        
+        for p in cart_produtos:
+            p['preco'] = p['preco_base']
+        
         forma_pagamento = self.combo_pagamento.currentText()
         sucesso, msg = SalesController.process_sale(
             forma_pagamento, 
-            self.cart_ingressos, 
-            self.cart_produtos
+            cart_ingressos, 
+            cart_produtos
         )
         
         if sucesso:

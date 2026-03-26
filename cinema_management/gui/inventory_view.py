@@ -164,8 +164,13 @@ class InventoryView(QDialog):
         btn_entrada.setProperty("class", "PrimaryBtn")
         btn_entrada.clicked.connect(self.entrada_estoque)
         
+        btn_remover = QPushButton("🗑️ Remover Produto")
+        btn_remover.setStyleSheet("background-color: #ef4444; color: white; padding: 10px 15px; border-radius: 4px; font-weight: bold;")
+        btn_remover.clicked.connect(self.remover_codigo)
+        
         toolbar.addWidget(btn_add)
         toolbar.addWidget(btn_entrada)
+        toolbar.addWidget(btn_remover)
         toolbar.addStretch()
         
         layout.addLayout(toolbar)
@@ -212,6 +217,27 @@ class InventoryView(QDialog):
         qtd, ok = QInputDialog.getInt(self, "Entrada de Estoque", f"Quantidade a adicionar para:\n{prod_nome}", min=1)
         if ok:
             success, msg = InventoryController.update_stock(prod_id, qtd, "Entrada Manual")
+            if success:
+                QMessageBox.information(self, "Sucesso", msg)
+                self.load_data()
+            else:
+                QMessageBox.critical(self, "Erro", msg)
+
+    def remover_codigo(self):
+        row = self.tbl_produtos.currentRow()
+        if row < 0:
+            QMessageBox.warning(self, "Aviso", "Selecione um produto primeiro.")
+            return
+            
+        prod_id = self.tbl_produtos.item(row, 0).text()
+        prod_nome = self.tbl_produtos.item(row, 1).text()
+        
+        reply = QMessageBox.question(self, 'Confirmar', 
+                                     f'Tem certeza que deseja apagar "{prod_nome}"?\nO histórico financeiro de vendas anteriores e impostos será mantido seguro.',
+                                     QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No, QMessageBox.StandardButton.No)
+        
+        if reply == QMessageBox.StandardButton.Yes:
+            success, msg = InventoryController.delete_product(prod_id)
             if success:
                 QMessageBox.information(self, "Sucesso", msg)
                 self.load_data()

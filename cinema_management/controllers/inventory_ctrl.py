@@ -10,9 +10,9 @@ class InventoryController:
 
     @staticmethod
     def get_all_products():
-        """Retorna todos os produtos cadastrados"""
+        """Retorna todos os produtos ativos cadastrados"""
         with get_db() as db:
-            produtos = db.query(Produto).order_by(Produto.nome).all()
+            produtos = db.query(Produto).filter(Produto.ativo == True).order_by(Produto.nome).all()
             return [{
                 'id': p.id,
                 'nome': p.nome,
@@ -86,5 +86,19 @@ class InventoryController:
                 
                 db.commit()
                 return True, "Estoque atualizado com sucesso!"
+        except Exception as e:
+            return False, str(e)
+
+    @staticmethod
+    def delete_product(produto_id):
+        """Desativa um produto para que ele não apareça mais no catálogo de vendas e estoque"""
+        try:
+            with get_db() as db:
+                produto = db.query(Produto).filter(Produto.id == int(produto_id)).first()
+                if not produto:
+                    return False, "Produto não encontrado."
+                produto.ativo = False
+                db.commit()
+                return True, "Produto removido com sucesso!"
         except Exception as e:
             return False, str(e)

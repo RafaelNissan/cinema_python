@@ -136,6 +136,19 @@ class SalesController:
                 db.commit()
                 return True, nova_venda.id
         except Exception as e:
-            import traceback
-            traceback.print_exc()
-            return False, str(e)
+            return False, f"Erro ao processar venda: {str(e)}"
+
+    @staticmethod
+    def get_sales_history():
+        """Busca as últimas 500 vendas"""
+        with get_db() as db:
+            from database.models import Venda
+            vendas = db.query(Venda).order_by(Venda.data_venda.desc()).limit(500).all()
+            return [{
+                'id': v.id,
+                'data': v.data_venda.strftime("%d/%m/%Y %H:%M"),
+                'pagamento': v.forma_pagamento,
+                'bruto': v.subtotal,
+                'impostos': v.total_impostos,
+                'liquido': v.total_liquido
+            } for v in vendas]
