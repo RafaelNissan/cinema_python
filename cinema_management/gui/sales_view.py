@@ -10,6 +10,7 @@ from PyQt6.QtCore import Qt
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controllers.sales_ctrl import SalesController
 from config import FORMAS_PAGAMENTO, TIPOS_INGRESSO
+from gui.seats_view import SeatSelectionDialog
 
 STYLE_SHEET_PDV = """
 QDialog {
@@ -224,19 +225,32 @@ class SalesView(QDialog):
             self.tbl_produtos.setCellWidget(row, 3, btn_add)
 
     def add_session_to_cart(self, session):
-        tipo_selecionado = self.combo_tipo_ingresso.currentText()
-        multiplicador = TIPOS_INGRESSO.get(tipo_selecionado, 1.0)
-        
-        item = {
-            'tipo_item': 'ingresso',
-            'sessao_id': session['id'],
-            'nome': f"Ing. {session['filme']} ({session['horario']})",
-            'preco_base': float(session['preco']) * multiplicador,
-            'tipo': tipo_selecionado,
-            'quantidade': 1
-        }
-        self.carrinho.append(item)
-        self.update_cart_view()
+        # Abrir diálogo de assentos
+        dialog = SeatSelectionDialog(
+            sessao_id=session['id'],
+            filme_titulo=session['filme'],
+            sala_nome=session['sala'],
+            parent=self
+        )
+        if dialog.exec() == QDialog.DialogCode.Accepted:
+            assento = dialog.get_selected_seat()
+            if not assento:
+                return
+
+            tipo_selecionado = self.combo_tipo_ingresso.currentText()
+            multiplicador = TIPOS_INGRESSO.get(tipo_selecionado, 1.0)
+            
+            item = {
+                'tipo_item': 'ingresso',
+                'sessao_id': session['id'],
+                'nome': f"Ing. {session['filme']} ({session['horario']}) [{assento}]",
+                'preco_base': float(session['preco']) * multiplicador,
+                'tipo': tipo_selecionado,
+                'assento_id': assento,
+                'quantidade': 1
+            }
+            self.carrinho.append(item)
+            self.update_cart_view()
 
     def add_product_to_cart(self, product):
         for item in self.carrinho:

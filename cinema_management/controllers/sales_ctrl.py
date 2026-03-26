@@ -103,7 +103,8 @@ class SalesController:
                         venda_id=nova_venda.id,
                         sessao_id=ing['sessao_id'],
                         tipo_ingresso=ing['tipo'],
-                        preco_unitario=preco_final
+                        preco_unitario=preco_final,
+                        assento_id=ing.get('assento_id')
                     )
                     db.add(vi)
                     
@@ -152,3 +153,12 @@ class SalesController:
                 'impostos': v.total_impostos,
                 'liquido': v.total_liquido
             } for v in vendas]
+
+    @staticmethod
+    def get_occupied_seats(sessao_id):
+        """Retorna uma lista de assento_id que já foram vendidos ou reservados para a sessão"""
+        with get_db() as db:
+            from database.models import VendaIngresso
+            # Buscando diretamente nos ingressos vendidos para garantir
+            ingressos = db.query(VendaIngresso).filter(VendaIngresso.sessao_id == int(sessao_id)).all()
+            return [i.assento_id for i in ingressos if i.assento_id]

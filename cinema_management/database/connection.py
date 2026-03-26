@@ -38,10 +38,10 @@ class DatabaseConnection:
             
             with cls.engine.connect() as conn:
                 pass
-            print(f"✓ Conectado ao MySQL via SQLAlchemy no banco {DB_NAME}")
+            print(f"[OK] Conectado ao MySQL via SQLAlchemy no banco {DB_NAME}")
             return True
         except Exception as e:
-            print(f"✗ Erro ao conectar ao MySQL (SQLAlchemy): {e}")
+            print(f"[ERRO] Falha ao conectar ao MySQL (SQLAlchemy): {e}")
             return False
 
     @classmethod
@@ -53,10 +53,10 @@ class DatabaseConnection:
             # Import models carefully to avoid circular imports during setup
             import database.models
             Base.metadata.create_all(bind=cls.engine)
-            print("✓ Schema do banco (SQLAlchemy) atualizado com sucesso!")
+            print("[OK] Schema do banco (SQLAlchemy) atualizado com sucesso!")
             return True
         except Exception as e:
-            print(f"✗ Erro ao criar schema SQLAlchemy: {e}")
+            print(f"[ERRO] Ao criar schema SQLAlchemy: {e}")
             return False
 
     @staticmethod
