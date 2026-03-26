@@ -21,9 +21,11 @@ QPushButton.SeatBtn {
     background-color: #334155;
     color: white;
     border: 1px solid #475569;
-    border-radius: 4px;
+    border-radius: 20px;
     font-weight: bold;
-    min-width: 45px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
     min-height: 40px;
 }
 QPushButton.SeatBtn:hover { background-color: #475569; }
@@ -33,7 +35,8 @@ QPushButton.SeatBtn[occupied="true"] {
     color: #fee2e2;
 }
 QPushButton.SeatBtn[selected="true"] {
-    background-color: #10b981;
+    background-color: #cbd5e1;
+    color: #0f172a;
     border: 2px solid white;
 }
 QFrame#Screen {
@@ -96,8 +99,8 @@ class SeatSelectionDialog(QDialog):
         self.grid_layout = QGridLayout(grid_widget)
         self.grid_layout.setSpacing(8)
         
-        # Gerar grid 10x10 (A-J)
-        rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+        # Gerar grid 10x10 (A-J) - Invertido: J (atrás) em cima e A (tela) embaixo
+        rows = ['J', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A']
         for r_idx, label in enumerate(rows):
             # Row Label
             row_label = QLabel(label)
@@ -127,7 +130,7 @@ class SeatSelectionDialog(QDialog):
         legend_layout.addStretch()
         legend_layout.addWidget(self.create_legend_item("Livre", "#334155"))
         legend_layout.addWidget(self.create_legend_item("Ocupado", "#ef4444"))
-        legend_layout.addWidget(self.create_legend_item("Selecionado", "#10b981"))
+        legend_layout.addWidget(self.create_legend_item("Selecionado", "#cbd5e1"))
         legend_layout.addStretch()
         main_layout.addLayout(legend_layout)
         
