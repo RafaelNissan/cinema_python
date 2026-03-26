@@ -249,10 +249,17 @@ class SalesView(QDialog):
             self.tbl_sessoes.setItem(row, 2, QTableWidgetItem(s['horario']))
             self.tbl_sessoes.setItem(row, 3, QTableWidgetItem(f"R$ {s['preco']:.2f}"))
             
-            btn_add = QPushButton("Adicionar")
+            btn_add = QPushButton("ADICIONAR")
             btn_add.setProperty("class", "AddBtn")
             btn_add.clicked.connect(lambda checked, session=s: self.add_session_to_cart(session))
-            self.tbl_sessoes.setCellWidget(row, 4, btn_add)
+            
+            # Container para centralizar e manter proporção (Pill style)
+            container = QWidget()
+            cont_layout = QHBoxLayout(container)
+            cont_layout.addWidget(btn_add)
+            cont_layout.setContentsMargins(0, 0, 0, 0)
+            cont_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.tbl_sessoes.setCellWidget(row, 4, container)
             
         # Produtos
         produtos = SalesController.get_products()
@@ -264,10 +271,17 @@ class SalesView(QDialog):
             self.tbl_produtos.setItem(row, 1, QTableWidgetItem(p['categoria']))
             self.tbl_produtos.setItem(row, 2, QTableWidgetItem(f"R$ {p['preco']:.2f}"))
             
-            btn_add = QPushButton("Adicionar")
+            btn_add = QPushButton("ADICIONAR")
             btn_add.setProperty("class", "AddBtn")
             btn_add.clicked.connect(lambda checked, product=p: self.add_product_to_cart(product))
-            self.tbl_produtos.setCellWidget(row, 3, btn_add)
+            
+            # Container para centralizar e manter proporção (Pill style)
+            container = QWidget()
+            cont_layout = QHBoxLayout(container)
+            cont_layout.addWidget(btn_add)
+            cont_layout.setContentsMargins(0, 0, 0, 0)
+            cont_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.tbl_produtos.setCellWidget(row, 3, container)
 
     def add_session_to_cart(self, session):
         # Buscar assentos da mesma sessão que já estão no carrinho
