@@ -26,65 +26,74 @@ from gui.history_view import HistoryView
 
 STYLE_SHEET = """
 QMainWindow {
-    background-color: #0f172a;
+    background-color: #020617;
 }
 QFrame#SideBar {
-    background-color: #1e293b;
-    border-right: 1px solid #334155;
+    background-color: #0f172a;
+    border-right: 1px solid #1e293b;
 }
 QLabel#AppBrand {
     color: #f8fafc;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 20px 10px;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 30px 10px;
 }
 QPushButton.NavBtn {
     background-color: transparent;
-    color: #cbd5e1;
+    color: #94a3b8;
     text-align: left;
-    padding: 15px 20px;
+    padding: 12px 25px;
+    margin: 4px 10px;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
     border: none;
-    border-left: 4px solid transparent;
-    border-radius: 0px;
+    border-radius: 8px;
 }
 QPushButton.NavBtn:hover {
-    background-color: #334155;
-    color: white;
-    border-left: 4px solid #3b82f6;
+    background-color: #1e293b;
+    color: #3b82f6;
+}
+QPushButton.NavBtn[active="true"] {
+    background-color: #1e293b;
+    color: #3b82f6;
+    border-left: 3px solid #3b82f6;
 }
 QPushButton.ActionBtn {
     background-color: #3b82f6;
     color: white;
     font-weight: bold;
-    border-radius: 6px;
-    padding: 10px 15px;
+    border-radius: 8px;
+    padding: 12px 20px;
     font-size: 13px;
+    border: none;
 }
 QPushButton.ActionBtn:hover {
     background-color: #2563eb;
 }
 QFrame.Card {
-    background-color: #1e293b;
-    border-radius: 10px;
-    border: 1px solid #334155;
+    background-color: #0f172a;
+    border-radius: 12px;
+    border: 1px solid #1e293b;
+}
+QFrame.Card:hover {
+    border: 1px solid #3b82f6;
 }
 QLabel.CardTitle {
-    color: #94a3b8;
-    font-size: 13px;
-    font-weight: bold;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 QLabel.CardValue {
     color: #f8fafc;
-    font-size: 26px;
-    font-weight: bold;
+    font-size: 28px;
+    font-weight: 800;
 }
 QLabel#HeaderTitle {
     color: #f8fafc;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 28px;
+    font-weight: 800;
 }
 """
 
@@ -189,15 +198,15 @@ class MainWindow(QMainWindow):
         cards_grid.setSpacing(20)
 
         # Criando Cards
-        self.card_vendas = self.create_card("Vendas Hoje", "0")
-        self.card_faturamento = self.create_card("Faturamento", "R$ 0,00")
-        self.card_ingressos = self.create_card("Ingressos", "0")
-        self.card_ticket = self.create_card("Ticket Médio", "R$ 0,00")
+        self.card_vendas = self.create_card("Vendas Hoje", "0", "🎟️")
+        self.card_faturamento = self.create_card("Faturamento", "R$ 0,00", "💰")
+        self.card_ingressos = self.create_card("Ingressos", "0", "🎫")
+        self.card_ticket = self.create_card("Ticket Médio", "R$ 0,00", "📈")
         
-        self.card_produtos = self.create_card("Produtos", "0")
-        self.card_liquido = self.create_card("Faturamento Líquido", "R$ 0,00")
-        self.card_estoque = self.create_card("Alertas Estoque", "0")
-        self.card_impostos = self.create_card("Impostos (Dia)", "R$ 0,00")
+        self.card_produtos = self.create_card("Produtos", "0", "🍿")
+        self.card_liquido = self.create_card("Lucro Estimado", "R$ 0,00", "💎")
+        self.card_estoque = self.create_card("Alertas Estoque", "0", "⚠️")
+        self.card_impostos = self.create_card("Impostos (Dia)", "R$ 0,00", "🏦")
 
         cards_grid.addWidget(self.card_vendas['frame'], 0, 0)
         cards_grid.addWidget(self.card_faturamento['frame'], 0, 1)
@@ -234,24 +243,30 @@ class MainWindow(QMainWindow):
         main_layout.addWidget(sidebar)
         main_layout.addWidget(content_area, 1)
 
-    def create_card(self, title, default_value):
+    def create_card(self, title, default_value, icon="📊"):
         """Cria um widget de cartão de estatística"""
         frame = QFrame()
         frame.setProperty("class", "Card")
-        # Um pouco de sombra pode ser adicionado no QT
-        frame.setStyleSheet("QFrame.Card { border: 1px solid #e2e8f0; }")
         
         layout = QVBoxLayout(frame)
-        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setContentsMargins(25, 25, 25, 25)
         
+        header_layout = QHBoxLayout()
         lbl_title = QLabel(title)
         lbl_title.setProperty("class", "CardTitle")
+        
+        lbl_icon = QLabel(icon)
+        lbl_icon.setStyleSheet("font-size: 18px;")
+        
+        header_layout.addWidget(lbl_title)
+        header_layout.addStretch()
+        header_layout.addWidget(lbl_icon)
         
         lbl_value = QLabel(default_value)
         lbl_value.setProperty("class", "CardValue")
         
-        layout.addWidget(lbl_title)
-        layout.addSpacing(10)
+        layout.addLayout(header_layout)
+        layout.addSpacing(15)
         layout.addWidget(lbl_value)
         
         return {'frame': frame, 'value_label': lbl_value}
