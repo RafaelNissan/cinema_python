@@ -22,6 +22,7 @@ from gui.sales_view import SalesView
 from gui.inventory_view import InventoryView
 from gui.movies_view import MoviesView
 from gui.reports_view import ReportsView
+from gui.history_view import HistoryView
 
 STYLE_SHEET = """
 QMainWindow {
@@ -142,7 +143,7 @@ class MainWindow(QMainWindow):
         # Menu Buttons
         menus = [
             ("💰 Nova Venda", self.abrir_pdv),
-            ("📋 Histórico de Vendas", self.em_desenvolvimento),
+            ("📋 Histórico de Vendas", self.abrir_historico),
             ("📦 Gerenciar Estoque", self.abrir_estoque),
             ("🎬 Filmes e Sessões", self.abrir_filmes),
             ("📊 Relatórios", self.abrir_relatorios),
@@ -302,6 +303,11 @@ class MainWindow(QMainWindow):
     def abrir_relatorios(self):
         """Abre o Dashboard Financeiro"""
         dialog = ReportsView(self)
+        dialog.exec()
+
+    def abrir_historico(self):
+        """Abre o painel de Histórico de Vendas"""
+        dialog = HistoryView(self)
         dialog.exec()
 
     def em_desenvolvimento(self):
