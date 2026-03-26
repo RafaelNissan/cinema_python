@@ -34,9 +34,9 @@ QFrame#SideBar {
 }
 QLabel#AppBrand {
     color: #ffffff;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 900;
-    padding: 35px 10px;
+    padding: 35px 15px;
 }
 QPushButton.NavBtn {
     background-color: transparent;
@@ -139,15 +139,15 @@ class MainWindow(QMainWindow):
         # Sidebar
         sidebar = QFrame()
         sidebar.setObjectName("SideBar")
-        sidebar.setFixedWidth(250)
+        sidebar.setFixedWidth(260)
         sidebar_layout = QVBoxLayout(sidebar)
         sidebar_layout.setContentsMargins(0, 0, 0, 0)
         sidebar_layout.setSpacing(0)
 
         # Brand
-        brand = QLabel(f"🎬 {APP_NAME}")
+        brand = QLabel("🍿 Cine-Pena")
         brand.setObjectName("AppBrand")
-        brand.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        brand.setAlignment(Qt.AlignmentFlag.AlignLeft)
         sidebar_layout.addWidget(brand)
         sidebar_layout.addSpacing(20)
 
@@ -184,7 +184,7 @@ class MainWindow(QMainWindow):
 
         # Header
         header_layout = QHBoxLayout()
-        title = QLabel("Dashboard Geral")
+        title = QLabel("📍 Painel de Controle")
         title.setObjectName("HeaderTitle")
         
         self.lbl_data = QLabel(datetime.now().strftime("%d/%m/%Y %H:%M"))

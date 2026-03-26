@@ -31,18 +31,22 @@ QTableWidget {
     outline: none;
 }
 QTableWidget::item {
-    padding: 12px;
+    padding: 15px;
 }
 QHeaderView::section {
     background-color: #0a0a0a;
     color: #4b5563;
     border: none;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid #1a1a1a;
     padding: 15px;
     font-weight: 900;
     text-transform: uppercase;
     font-size: 11px;
     letter-spacing: 1px;
+}
+QTableCornerButton::section {
+    background-color: #0a0a0a;
+    border: none;
 }
 QFrame.CartPanel {
     background-color: #0a0a0a;
@@ -70,8 +74,11 @@ QPushButton.AddBtn {
     background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #0ea5e9, stop:1 #2563eb);
     color: white;
     font-weight: 900;
-    min-width: 90px;
+    min-width: 100px;
+    min-height: 35px;
     border: none;
+    text-transform: uppercase;
+    font-size: 10px;
 }
 QPushButton.AddBtn:hover { background: #38bdf8; }
 QPushButton.FinishBtn {
@@ -79,7 +86,8 @@ QPushButton.FinishBtn {
     color: white;
     font-weight: 900;
     font-size: 18px;
-    height: 60px;
+    min-width: 250px;
+    height: 70px;
     border-radius: 12px;
     border: none;
     text-transform: uppercase;
@@ -125,7 +133,8 @@ class SalesView(QDialog):
         # --- LEFT PANEL (Catalog) ---
         catalog_widget = QWidget()
         catalog_layout = QVBoxLayout(catalog_widget)
-        catalog_layout.setContentsMargins(20, 20, 20, 20)
+        catalog_layout.setContentsMargins(25, 25, 25, 25)
+        catalog_layout.setSpacing(15)
         
         lbl_sessoes = QLabel("Sessões Disponíveis")
         lbl_sessoes.setStyleSheet("font-size: 16px; font-weight: bold;")
