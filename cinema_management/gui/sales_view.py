@@ -79,13 +79,13 @@ QPushButton:hover {
 QPushButton.AddBtn {
     background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #0ea5e9, stop:1 #2563eb);
     color: white;
-    font-weight: 900;
-    min-width: 110px;
-    min-height: 38px;
+    font-weight: 800;
+    width: 110px;
+    height: 30px;
+    border-radius: 15px;
     border: none;
     text-transform: uppercase;
-    font-size: 8px;
-    padding: 0 2px;
+    font-size: 10px;
 }
 QPushButton.AddBtn:hover { background: #38bdf8; }
 QPushButton.FinishBtn {
@@ -161,7 +161,7 @@ class SalesView(QDialog):
         self.tbl_sessoes.verticalHeader().setVisible(False)
         self.tbl_sessoes.verticalHeader().setDefaultSectionSize(50)
         self.tbl_sessoes.setHorizontalHeaderLabels(["Filme", "Sala", "Horário", "Preço", "Ação"])
-        self.tbl_sessoes.setColumnWidth(4, 140)
+        self.tbl_sessoes.setColumnWidth(4, 150)
         self.tbl_sessoes.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeMode.Fixed)
         self.tbl_sessoes.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.tbl_sessoes.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
@@ -175,7 +175,7 @@ class SalesView(QDialog):
         self.tbl_produtos.verticalHeader().setVisible(False)
         self.tbl_produtos.verticalHeader().setDefaultSectionSize(50)
         self.tbl_produtos.setHorizontalHeaderLabels(["Produto", "Categoria", "Preço", "Ação"])
-        self.tbl_produtos.setColumnWidth(3, 140)
+        self.tbl_produtos.setColumnWidth(3, 150)
         self.tbl_produtos.horizontalHeader().setSectionResizeMode(3, QHeaderView.ResizeMode.Fixed)
         self.tbl_produtos.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
         self.tbl_produtos.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
