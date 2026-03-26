@@ -138,9 +138,10 @@ class SalesView(QDialog):
         lbl_carrinho.setStyleSheet("font-size: 18px; font-weight: bold;")
         cart_layout.addWidget(lbl_carrinho)
         
-        self.tbl_cart = QTableWidget(0, 3)
-        self.tbl_cart.setHorizontalHeaderLabels(["Item", "Qtd/Tipo", "Valor"])
-        self.tbl_cart.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        self.tbl_cart = QTableWidget(0, 4)
+        self.tbl_cart.setHorizontalHeaderLabels(["", "Item", "Qtd/Tipo", "Valor"])
+        self.tbl_cart.setColumnWidth(0, 30)
+        self.tbl_cart.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
         self.tbl_cart.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         cart_layout.addWidget(self.tbl_cart)
         
@@ -266,19 +267,23 @@ class SalesView(QDialog):
             row = self.tbl_cart.rowCount()
             self.tbl_cart.insertRow(row)
             
-            chk_item = QTableWidgetItem(item['nome'])
+            # Coluna 0: Checkbox
+            chk_item = QTableWidgetItem("")
             chk_item.setFlags(Qt.ItemFlag.ItemIsUserCheckable | Qt.ItemFlag.ItemIsEnabled)
             chk_item.setCheckState(Qt.CheckState.Unchecked)
             self.tbl_cart.setItem(row, 0, chk_item)
             
+            # Coluna 1: Nome
+            self.tbl_cart.setItem(row, 1, QTableWidgetItem(item['nome']))
+            
             if item['tipo_item'] == 'ingresso':
-                self.tbl_cart.setItem(row, 1, QTableWidgetItem(item['tipo']))
+                self.tbl_cart.setItem(row, 2, QTableWidgetItem(item['tipo']))
             else:
-                self.tbl_cart.setItem(row, 1, QTableWidgetItem(f"{item['quantidade']}x"))
+                self.tbl_cart.setItem(row, 2, QTableWidgetItem(f"{item['quantidade']}x"))
             
             valor = float(item['preco_base']) * item['quantidade']
             subtotal += valor
-            self.tbl_cart.setItem(row, 2, QTableWidgetItem(f"R$ {valor:.2f}"))
+            self.tbl_cart.setItem(row, 3, QTableWidgetItem(f"R$ {valor:.2f}"))
             
         self.lbl_total.setText(f"Total: R$ {subtotal:.2f}")
 
