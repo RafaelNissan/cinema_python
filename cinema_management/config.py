@@ -23,7 +23,8 @@ IMPOSTOS = {
 
 TIPOS_INGRESSO = {
     'INTEIRA': 1.0,
-    'MEIA': 0.5,
+    'MEIA (Estudante)': 0.5,
+    'MEIA (Criança até 8 anos)': 0.5,
     'CORTESIA': 0.0
 }
 

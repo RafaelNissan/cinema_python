@@ -9,7 +9,7 @@ from PyQt6.QtCore import Qt
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from controllers.sales_ctrl import SalesController
-from config import FORMAS_PAGAMENTO
+from config import FORMAS_PAGAMENTO, TIPOS_INGRESSO
 
 STYLE_SHEET_PDV = """
 QDialog {
@@ -108,6 +108,16 @@ class SalesView(QDialog):
         lbl_sessoes = QLabel("Sessões Disponíveis")
         lbl_sessoes.setStyleSheet("font-size: 16px; font-weight: bold;")
         catalog_layout.addWidget(lbl_sessoes)
+        
+        # Tipo de Ingresso Selector
+        ticket_type_layout = QHBoxLayout()
+        ticket_type_layout.addWidget(QLabel("💳 Selecionar Tipo:"))
+        self.combo_tipo_ingresso = QComboBox()
+        self.combo_tipo_ingresso.addItems(TIPOS_INGRESSO.keys())
+        self.combo_tipo_ingresso.setFixedWidth(200)
+        ticket_type_layout.addWidget(self.combo_tipo_ingresso)
+        ticket_type_layout.addStretch()
+        catalog_layout.addLayout(ticket_type_layout)
         
         self.tbl_sessoes = QTableWidget(0, 5)
         self.tbl_sessoes.setHorizontalHeaderLabels(["Filme", "Sala", "Horário", "Preço", "Ação"])
@@ -214,12 +224,15 @@ class SalesView(QDialog):
             self.tbl_produtos.setCellWidget(row, 3, btn_add)
 
     def add_session_to_cart(self, session):
+        tipo_selecionado = self.combo_tipo_ingresso.currentText()
+        multiplicador = TIPOS_INGRESSO.get(tipo_selecionado, 1.0)
+        
         item = {
             'tipo_item': 'ingresso',
             'sessao_id': session['id'],
             'nome': f"Ing. {session['filme']} ({session['horario']})",
-            'preco_base': session['preco'],
-            'tipo': 'INTEIRA',
+            'preco_base': float(session['preco']) * multiplicador,
+            'tipo': tipo_selecionado,
             'quantidade': 1
         }
         self.carrinho.append(item)
