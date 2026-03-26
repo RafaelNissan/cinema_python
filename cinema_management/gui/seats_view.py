@@ -35,9 +35,9 @@ QPushButton.SeatBtn[occupied="true"] {
     color: #fee2e2;
 }
 QPushButton.SeatBtn[selected="true"] {
-    background-color: #cbd5e1;
-    color: #0f172a;
-    border: 2px solid white;
+    background-color: #22c55e;
+    color: #052e16;
+    border: 2px solid #f0fdf4;
 }
 QFrame#Screen {
     background-color: #3b82f6;
@@ -130,7 +130,7 @@ class SeatSelectionDialog(QDialog):
         legend_layout.addStretch()
         legend_layout.addWidget(self.create_legend_item("Livre", "#334155"))
         legend_layout.addWidget(self.create_legend_item("Ocupado", "#ef4444"))
-        legend_layout.addWidget(self.create_legend_item("Selecionado", "#cbd5e1"))
+        legend_layout.addWidget(self.create_legend_item("Selecionado", "#22c55e"))
         legend_layout.addStretch()
         main_layout.addLayout(legend_layout)
         
