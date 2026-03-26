@@ -11,31 +11,32 @@ from controllers.sales_ctrl import SalesController
 
 STYLE_SHEETS_SEATS = """
 QDialog {
-    background-color: #020617;
-    color: #f8fafc;
+    background-color: #000000;
+    color: #ffffff;
 }
 QLabel {
-    color: #f8fafc;
+    color: #ffffff;
 }
 QPushButton#SeatBtn {
-    background-color: #1e293b;
-    color: #94a3b8;
-    border: none;
+    background-color: #111827;
+    color: #4b5563;
+    border: 1px solid #1a1a1a;
     border-radius: 20px;
-    font-weight: bold;
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
-    font-size: 13px;
+    font-weight: 900;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+    font-size: 12px;
 }
 QPushButton#SeatBtn:hover { 
-    background-color: #334155; 
-    color: white;
+    background-color: #1a1a1a; 
+    border: 1px solid #0ea5e9;
+    color: #0ea5e9;
 }
 QFrame#Screen {
-    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #60a5fa, stop:1 #2563eb);
-    border-radius: 6px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #00d2ff, stop:0.5 #3a7bd5, stop:1 #000000);
+    border-radius: 10px;
 }
 """
 
@@ -124,9 +125,9 @@ class SeatSelectionDialog(QDialog):
         # Status Legend
         legend_layout = QHBoxLayout()
         legend_layout.addStretch()
-        legend_layout.addWidget(self.create_legend_item("Livre", "#1e293b"))
+        legend_layout.addWidget(self.create_legend_item("Livre", "#111827"))
         legend_layout.addWidget(self.create_legend_item("Ocupado", "#ef4444"))
-        legend_layout.addWidget(self.create_legend_item("Selecionado", "#22c55e"))
+        legend_layout.addWidget(self.create_legend_item("Selecionado", "#10b981"))
         legend_layout.addStretch()
         main_layout.addLayout(legend_layout)
         
@@ -154,13 +155,13 @@ class SeatSelectionDialog(QDialog):
             w = self.grid_layout.itemAt(i).widget()
             if isinstance(w, QPushButton) and w.objectName() == "SeatBtn":
                 if w.property("occupied") == "true":
-                    w.setStyleSheet("background-color: #ef4444; color: #fee2e2; border-radius: 20px; font-weight: bold;")
+                    w.setStyleSheet("background-color: #ef4444; color: #fee2e2; border-radius: 20px; font-weight: 900; border: none;")
                 else:
-                    w.setStyleSheet("background-color: #1e293b; color: #94a3b8; border-radius: 20px; font-weight: bold;")
+                    w.setStyleSheet("background-color: #111827; color: #4b5563; border-radius: 20px; font-weight: 900; border: 1px solid #1a1a1a;")
         
-        # Aplicar o verde vibrante no selecionado
+        # Aplicar o verde vibrante no selecionado (Glow effect)
         self.selected_seat = seat_id
-        button.setStyleSheet("background-color: #22c55e; color: black; border-radius: 20px; font-weight: 900; border: 2px solid #f0fdf4;")
+        button.setStyleSheet("background-color: #10b981; color: black; border-radius: 20px; font-weight: 900; border: 2px solid #34d399;")
         
         self.btn_confirmar.setEnabled(True)
         self.btn_confirmar.setText(f"Confirmar Assento: {seat_id}")

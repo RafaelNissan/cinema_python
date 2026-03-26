@@ -10,30 +10,31 @@ from controllers.sales_ctrl import SalesController
 
 STYLE_SHEET_HISTORY = """
 QDialog {
-    background-color: #020617;
-    color: #f8fafc;
+    background-color: #000000;
+    color: #ffffff;
 }
 QLabel {
-    color: #f8fafc;
+    color: #ffffff;
 }
 QTableWidget {
-    background-color: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 8px;
-    color: #f8fafc;
-    gridline-color: #1e293b;
-    selection-background-color: #1e293b;
-    selection-color: #3b82f6;
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    color: #ffffff;
+    gridline-color: #1a1a1a;
+    selection-background-color: #111827;
+    selection-color: #0ea5e9;
 }
 QHeaderView::section {
-    background-color: #1e293b;
-    color: #64748b;
+    background-color: #0a0a0a;
+    color: #4b5563;
     border: none;
-    border-bottom: 2px solid #020617;
-    padding: 12px;
-    font-weight: 800;
+    border-bottom: 2px solid #000000;
+    padding: 15px;
+    font-weight: 900;
     text-transform: uppercase;
     font-size: 11px;
+    letter-spacing: 1px;
 }
 """
 

@@ -12,53 +12,60 @@ from controllers.inventory_ctrl import InventoryController
 
 STYLE_SHEET_INVENTORY = """
 QDialog {
-    background-color: #020617;
-    color: #f8fafc;
+    background-color: #000000;
+    color: #ffffff;
 }
 QLabel {
-    color: #f8fafc;
+    color: #ffffff;
 }
 QLineEdit, QComboBox {
-    background-color: #0f172a;
-    border: 1px solid #1e293b;
-    padding: 10px;
-    border-radius: 8px;
-    color: #f8fafc;
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    padding: 12px;
+    border-radius: 10px;
+    color: #ffffff;
+}
+QLineEdit:focus, QComboBox:hover {
+    border: 1px solid #0ea5e9;
 }
 QTableWidget {
-    background-color: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 8px;
-    color: #f8fafc;
-    gridline-color: #1e293b;
-    selection-background-color: #1e293b;
-    selection-color: #3b82f6;
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    color: #ffffff;
+    gridline-color: #1a1a1a;
+    selection-background-color: #111827;
+    selection-color: #0ea5e9;
 }
 QHeaderView::section {
-    background-color: #1e293b;
-    color: #64748b;
+    background-color: #0a0a0a;
+    color: #4b5563;
     border: none;
-    border-bottom: 2px solid #020617;
-    padding: 12px;
-    font-weight: 800;
+    border-bottom: 2px solid #000000;
+    padding: 15px;
+    font-weight: 900;
     text-transform: uppercase;
     font-size: 11px;
 }
 QPushButton {
-    background-color: #1e293b;
-    color: #f8fafc;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    font-weight: 600;
+    background-color: #111827;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid #1a1a1a;
+    font-weight: 700;
 }
-QPushButton:hover { background-color: #334155; }
+QPushButton:hover { 
+    background-color: #1a1a1a; 
+    border: 1px solid #0ea5e9;
+}
 QPushButton.PrimaryBtn {
-    background-color: #3b82f6;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #0ea5e9, stop:1 #2563eb);
     color: white;
-    font-weight: 800;
+    font-weight: 900;
+    border: none;
 }
-QPushButton.PrimaryBtn:hover { background-color: #2563eb; }
+QPushButton.PrimaryBtn:hover { background: #38bdf8; }
 """
 
 class ProductFormDialog(QDialog):

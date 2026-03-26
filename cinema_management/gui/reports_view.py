@@ -13,49 +13,50 @@ from modules.relatorios import Relatorios
 
 STYLE_SHEET_REPORTS = """
 QDialog, QWidget {
-    background-color: #020617;
-    color: #f8fafc;
+    background-color: #000000;
+    color: #ffffff;
 }
 QTabWidget::pane {
-    background-color: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 8px;
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
     margin-top: -1px;
 }
 QTabBar::tab {
-    background-color: #0f172a;
-    color: #64748b;
-    padding: 12px 25px;
-    font-weight: 800;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    margin-right: 4px;
+    background-color: #0a0a0a;
+    color: #4b5563;
+    padding: 15px 30px;
+    font-weight: 900;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin-right: 5px;
     text-transform: uppercase;
     font-size: 11px;
+    letter-spacing: 1px;
 }
 QTabBar::tab:selected {
-    background-color: #1e293b;
-    color: #3b82f6;
-    border-bottom: 2px solid #3b82f6;
+    background-color: #111827;
+    color: #0ea5e9;
+    border-bottom: 3px solid #0ea5e9;
 }
 QLabel {
-    color: #f8fafc;
+    color: #ffffff;
 }
 QTableWidget {
-    background-color: #0f172a;
+    background-color: #0a0a0a;
     border: none;
-    color: #f8fafc;
-    gridline-color: #1e293b;
-    selection-background-color: #1e293b;
-    selection-color: #3b82f6;
+    color: #ffffff;
+    gridline-color: #1a1a1a;
+    selection-background-color: #111827;
+    selection-color: #0ea5e9;
 }
 QHeaderView::section {
-    background-color: #1e293b;
-    color: #64748b;
+    background-color: #0a0a0a;
+    color: #4b5563;
     border: none;
-    border-bottom: 2px solid #020617;
-    padding: 12px;
-    font-weight: 800;
+    border-bottom: 2px solid #000000;
+    padding: 15px;
+    font-weight: 900;
     text-transform: uppercase;
     font-size: 11px;
 }
@@ -85,7 +86,7 @@ class ReportsView(QDialog):
         header_layout.addWidget(lbl_title)
         
         btn_refresh = QPushButton("🔄 Atualizar")
-        btn_refresh.setStyleSheet("background-color: #1e293b; color: #f8fafc; padding: 10px 15px; font-weight: 800; border-radius: 8px;")
+        btn_refresh.setStyleSheet("background-color: #111827; color: #ffffff; padding: 12px 20px; font-weight: 900; border-radius: 10px; border: 1px solid #1a1a1a;")
         btn_refresh.clicked.connect(self.load_data)
         header_layout.addWidget(btn_refresh, alignment=Qt.AlignmentFlag.AlignRight)
         

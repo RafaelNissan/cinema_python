@@ -26,74 +26,76 @@ from gui.history_view import HistoryView
 
 STYLE_SHEET = """
 QMainWindow {
-    background-color: #020617;
+    background-color: #000000;
 }
 QFrame#SideBar {
-    background-color: #0f172a;
-    border-right: 1px solid #1e293b;
+    background-color: #0a0a0a;
+    border-right: 1px solid #1a1a1a;
 }
 QLabel#AppBrand {
-    color: #f8fafc;
-    font-size: 22px;
-    font-weight: 800;
-    padding: 30px 10px;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 900;
+    padding: 35px 10px;
 }
 QPushButton.NavBtn {
     background-color: transparent;
-    color: #94a3b8;
+    color: #4b5563;
     text-align: left;
     padding: 12px 25px;
-    margin: 4px 10px;
+    margin: 4px 12px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 QPushButton.NavBtn:hover {
-    background-color: #1e293b;
-    color: #3b82f6;
+    background-color: #111827;
+    color: #0ea5e9;
 }
 QPushButton.NavBtn[active="true"] {
-    background-color: #1e293b;
-    color: #3b82f6;
-    border-left: 3px solid #3b82f6;
+    background-color: #111827;
+    color: #0ea5e9;
+    border-left: 4px solid #0ea5e9;
 }
 QPushButton.ActionBtn {
-    background-color: #3b82f6;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #0ea5e9, stop:1 #2563eb);
     color: white;
-    font-weight: bold;
-    border-radius: 8px;
-    padding: 12px 20px;
-    font-size: 13px;
+    font-weight: 900;
+    border-radius: 10px;
+    padding: 15px 25px;
+    font-size: 14px;
     border: none;
+    text-transform: uppercase;
 }
 QPushButton.ActionBtn:hover {
-    background-color: #2563eb;
+    background: #38bdf8;
 }
 QFrame.Card {
-    background-color: #0f172a;
-    border-radius: 12px;
-    border: 1px solid #1e293b;
+    background-color: #0a0a0a;
+    border-radius: 15px;
+    border: 1px solid #1a1a1a;
 }
 QFrame.Card:hover {
-    border: 1px solid #3b82f6;
+    border: 1px solid #0ea5e9;
+    background-color: #0f172a;
 }
 QLabel.CardTitle {
-    color: #64748b;
-    font-size: 12px;
-    font-weight: 700;
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 QLabel.CardValue {
-    color: #f8fafc;
-    font-size: 28px;
-    font-weight: 800;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 900;
 }
 QLabel#HeaderTitle {
-    color: #f8fafc;
-    font-size: 28px;
-    font-weight: 800;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 900;
 }
 """
 

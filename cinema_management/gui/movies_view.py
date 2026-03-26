@@ -12,68 +12,70 @@ from controllers.movies_ctrl import MoviesController
 
 STYLE_SHEET_MOVIES = """
 QDialog, QWidget {
-    background-color: #020617;
-    color: #f8fafc;
+    background-color: #000000;
+    color: #ffffff;
 }
 QTabWidget::pane {
-    background-color: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 8px;
+    background-color: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
     margin-top: -1px;
 }
 QTabBar::tab {
-    background-color: #0f172a;
-    color: #64748b;
-    padding: 12px 25px;
-    font-weight: 800;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    margin-right: 4px;
+    background-color: #0a0a0a;
+    color: #4b5563;
+    padding: 15px 30px;
+    font-weight: 900;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin-right: 5px;
     text-transform: uppercase;
     font-size: 11px;
+    letter-spacing: 1px;
 }
 QTabBar::tab:selected {
-    background-color: #1e293b;
-    color: #3b82f6;
-    border-bottom: 2px solid #3b82f6;
+    background-color: #111827;
+    color: #0ea5e9;
+    border-bottom: 3px solid #0ea5e9;
 }
 QLabel {
-    color: #f8fafc;
+    color: #ffffff;
 }
 QLineEdit, QComboBox {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    padding: 10px;
-    border-radius: 8px;
-    color: #f8fafc;
+    background-color: #111827;
+    border: 1px solid #1a1a1a;
+    padding: 12px;
+    border-radius: 10px;
+    color: #ffffff;
 }
 QTableWidget {
-    background-color: #0f172a;
+    background-color: #0a0a0a;
     border: none;
-    color: #f8fafc;
-    gridline-color: #1e293b;
-    selection-background-color: #1e293b;
-    selection-color: #3b82f6;
+    color: #ffffff;
+    gridline-color: #1a1a1a;
+    selection-background-color: #111827;
+    selection-color: #0ea5e9;
 }
 QHeaderView::section {
-    background-color: #1e293b;
-    color: #64748b;
+    background-color: #0a0a0a;
+    color: #4b5563;
     border: none;
-    border-bottom: 2px solid #020617;
-    padding: 12px;
-    font-weight: 800;
+    border-bottom: 2px solid #000000;
+    padding: 15px;
+    font-weight: 900;
     text-transform: uppercase;
     font-size: 11px;
 }
 QPushButton {
-    background-color: #3b82f6;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #0ea5e9, stop:1 #2563eb);
     color: white;
-    font-weight: 800;
-    padding: 12px 20px;
-    border-radius: 8px;
+    font-weight: 900;
+    padding: 15px 25px;
+    border-radius: 10px;
     border: none;
+    text-transform: uppercase;
 }
-QPushButton:hover { background-color: #2563eb; }
+QPushButton:hover { background: #38bdf8; }
 """
 
 class MovieFormDialog(QDialog):
