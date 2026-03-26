@@ -36,14 +36,18 @@ QHeaderView::section {
     font-size: 11px;
     letter-spacing: 1px;
 }
+QTableCornerButton::section {
+    background-color: #0a0a0a;
+    border: none;
+}
 """
 
 class HistoryView(QDialog):
     """Módulo de Histórico de Vendas Avulsas de Caixa"""
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Histórico de Vendas (Log de Caixa)")
-        self.resize(800, 500)
+        self.setWindowTitle("Cine-Pena - Histórico de Vendas")
+        self.resize(850, 600)
         self.setStyleSheet(STYLE_SHEET_HISTORY)
         
         self.setup_ui()
@@ -57,6 +61,8 @@ class HistoryView(QDialog):
         main_layout.addWidget(lbl_title)
         
         self.tbl_history = QTableWidget(0, 6)
+        self.tbl_history.verticalHeader().setVisible(False)
+        self.tbl_history.verticalHeader().setDefaultSectionSize(45)
         self.tbl_history.setHorizontalHeaderLabels([
             "ID da Venda", "Data da Transação", "Forma Pagamento", "Total Bruto", "Impostos Retidos", "Receita Líquida"
         ])

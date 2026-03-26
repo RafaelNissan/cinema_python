@@ -196,6 +196,8 @@ class MoviesView(QDialog):
         lay_filmes.addWidget(btn_add_f, alignment=Qt.AlignmentFlag.AlignLeft)
         
         self.tbl_filmes = QTableWidget(0, 5)
+        self.tbl_filmes.verticalHeader().setVisible(False)
+        self.tbl_filmes.verticalHeader().setDefaultSectionSize(45)
         self.tbl_filmes.setHorizontalHeaderLabels(["ID", "Título", "Gênero", "Duração", "Classif."])
         self.tbl_filmes.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
         lay_filmes.addWidget(self.tbl_filmes)
@@ -209,6 +211,8 @@ class MoviesView(QDialog):
         lay_salas.addWidget(btn_add_s, alignment=Qt.AlignmentFlag.AlignLeft)
         
         self.tbl_salas = QTableWidget(0, 3)
+        self.tbl_salas.verticalHeader().setVisible(False)
+        self.tbl_salas.verticalHeader().setDefaultSectionSize(45)
         self.tbl_salas.setHorizontalHeaderLabels(["ID", "Nome da Sala", "Capacidade"])
         self.tbl_salas.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
         lay_salas.addWidget(self.tbl_salas)
@@ -222,6 +226,8 @@ class MoviesView(QDialog):
         lay_sessoes.addWidget(btn_add_sess, alignment=Qt.AlignmentFlag.AlignLeft)
         
         self.tbl_sessoes = QTableWidget(0, 5)
+        self.tbl_sessoes.verticalHeader().setVisible(False)
+        self.tbl_sessoes.verticalHeader().setDefaultSectionSize(45)
         self.tbl_sessoes.setHorizontalHeaderLabels(["ID", "Filme", "Sala", "Horário", "Preço (R$)"])
         self.tbl_sessoes.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
         lay_sessoes.addWidget(self.tbl_sessoes)

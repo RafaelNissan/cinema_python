@@ -60,14 +60,18 @@ QHeaderView::section {
     text-transform: uppercase;
     font-size: 11px;
 }
+QTableCornerButton::section {
+    background-color: #0a0a0a;
+    border: none;
+}
 """
 
 class ReportsView(QDialog):
     """Módulo de Relatórios e Gestão Financeira"""
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("Relatórios e Gestão Financeira")
-        self.resize(1000, 700)
+        self.setWindowTitle("Cine-Pena - Gestão Financeira")
+        self.resize(1100, 750)
         self.setStyleSheet(STYLE_SHEET_REPORTS)
         
         # Datas de hoje até 30 dias atrás
@@ -99,6 +103,8 @@ class ReportsView(QDialog):
         tab_faturamento = QWidget()
         lay_faturamento = QVBoxLayout(tab_faturamento)
         self.tbl_fat = QTableWidget(0, 5)
+        self.tbl_fat.verticalHeader().setVisible(False)
+        self.tbl_fat.verticalHeader().setDefaultSectionSize(40)
         self.tbl_fat.setHorizontalHeaderLabels([
             "Data", "Qtd. Vendas", "Faturamento Bruto", "Faturamento Líquido", "Total Impostos"
         ])
@@ -110,6 +116,8 @@ class ReportsView(QDialog):
         tab_impostos = QWidget()
         lay_impostos = QVBoxLayout(tab_impostos)
         self.tbl_impostos = QTableWidget(0, 6)
+        self.tbl_impostos.verticalHeader().setVisible(False)
+        self.tbl_impostos.verticalHeader().setDefaultSectionSize(40)
         self.tbl_impostos.setHorizontalHeaderLabels([
             "Data", "Total Vendas", "ISS Guardado", "PIS", "COFINS", "Total Arrecadado"
         ])
@@ -126,6 +134,8 @@ class ReportsView(QDialog):
         lay_f = QVBoxLayout(frame_f)
         lay_f.addWidget(QLabel("🔥 Filmes Mais Em Alta"))
         self.tbl_top_f = QTableWidget(0, 4)
+        self.tbl_top_f.verticalHeader().setVisible(False)
+        self.tbl_top_f.verticalHeader().setDefaultSectionSize(40)
         self.tbl_top_f.setHorizontalHeaderLabels(["Filme", "Gênero", "Ingressos", "Receita"])
         self.tbl_top_f.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         lay_f.addWidget(self.tbl_top_f)
@@ -135,6 +145,8 @@ class ReportsView(QDialog):
         lay_p = QVBoxLayout(frame_p)
         lay_p.addWidget(QLabel("🍿 Produtos Mais Vendidos"))
         self.tbl_top_p = QTableWidget(0, 4)
+        self.tbl_top_p.verticalHeader().setVisible(False)
+        self.tbl_top_p.verticalHeader().setDefaultSectionSize(40)
         self.tbl_top_p.setHorizontalHeaderLabels(["Produto", "Categoria", "Qtd Vendida", "Receita"])
         self.tbl_top_p.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         lay_p.addWidget(self.tbl_top_p)

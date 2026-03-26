@@ -148,6 +148,8 @@ class InventoryView(QDialog):
         
         # Tabela
         self.tbl_produtos = QTableWidget(0, 8)
+        self.tbl_produtos.verticalHeader().setVisible(False)
+        self.tbl_produtos.verticalHeader().setDefaultSectionSize(45)
         self.tbl_produtos.setHorizontalHeaderLabels([
             "", "ID", "Produto", "Categoria", "Estoque", "Mínimo", "Preço (R$)", "Status"
         ])
