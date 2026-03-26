@@ -12,40 +12,52 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from modules.relatorios import Relatorios
 
 STYLE_SHEET_REPORTS = """
-QDialog, QWidget, QTabWidget::pane {
-    background-color: #0f172a;
+QDialog, QWidget {
+    background-color: #020617;
     color: #f8fafc;
-    border: none;
+}
+QTabWidget::pane {
+    background-color: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    margin-top: -1px;
 }
 QTabBar::tab {
-    background-color: #1e293b;
-    color: #94a3b8;
-    padding: 10px 20px;
-    font-weight: bold;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    background-color: #0f172a;
+    color: #64748b;
+    padding: 12px 25px;
+    font-weight: 800;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-right: 4px;
+    text-transform: uppercase;
+    font-size: 11px;
 }
 QTabBar::tab:selected {
-    background-color: #3b82f6;
-    color: white;
+    background-color: #1e293b;
+    color: #3b82f6;
+    border-bottom: 2px solid #3b82f6;
 }
 QLabel {
     color: #f8fafc;
 }
 QTableWidget {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 4px;
+    background-color: #0f172a;
+    border: none;
     color: #f8fafc;
-    gridline-color: #334155;
-    selection-background-color: #3b82f6;
+    gridline-color: #1e293b;
+    selection-background-color: #1e293b;
+    selection-color: #3b82f6;
 }
 QHeaderView::section {
-    background-color: #334155;
-    color: #f8fafc;
-    font-weight: bold;
-    padding: 5px;
-    border-bottom: 2px solid #1e293b;
+    background-color: #1e293b;
+    color: #64748b;
+    border: none;
+    border-bottom: 2px solid #020617;
+    padding: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 11px;
 }
 """
 
@@ -73,7 +85,7 @@ class ReportsView(QDialog):
         header_layout.addWidget(lbl_title)
         
         btn_refresh = QPushButton("🔄 Atualizar")
-        btn_refresh.setStyleSheet("background-color: #3b82f6; color: white; padding: 8px; font-weight: bold; border-radius: 4px;")
+        btn_refresh.setStyleSheet("background-color: #1e293b; color: #f8fafc; padding: 10px 15px; font-weight: 800; border-radius: 8px;")
         btn_refresh.clicked.connect(self.load_data)
         header_layout.addWidget(btn_refresh, alignment=Qt.AlignmentFlag.AlignRight)
         
