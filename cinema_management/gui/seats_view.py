@@ -17,7 +17,7 @@ QDialog {
 QLabel {
     color: #f8fafc;
 }
-QPushButton.SeatBtn {
+QPushButton#SeatBtn {
     background-color: #334155;
     color: white;
     border: none;
@@ -28,13 +28,12 @@ QPushButton.SeatBtn {
     min-width: 40px;
     min-height: 40px;
 }
-QPushButton.SeatBtn:hover { background-color: #475569; }
-QPushButton.SeatBtn[occupied="true"] {
+QPushButton#SeatBtn:hover { background-color: #475569; }
+QPushButton#SeatBtn[occupied="true"] {
     background-color: #ef4444;
-    border: 1px solid #7f1d1d;
     color: #fee2e2;
 }
-QPushButton.SeatBtn[selected="true"] {
+QPushButton#SeatBtn[selected="true"] {
     background-color: #22c55e;
     color: #000000;
     font-weight: 900;
@@ -110,14 +109,16 @@ class SeatSelectionDialog(QDialog):
             for c_idx in range(1, 11):
                 seat_id = f"{label}{c_idx}"
                 btn = QPushButton(str(c_idx))
-                btn.setProperty("class", "SeatBtn")
+                btn.setObjectName("SeatBtn")
                 btn.setCursor(Qt.CursorShape.PointingHandCursor)
                 
                 if seat_id in self.occupied_seats:
                     btn.setProperty("occupied", "true")
                     btn.setEnabled(False)
+                    btn.setStyleSheet("background-color: #ef4444; color: #fee2e2; border-radius: 20px;")
                     btn.setToolTip("Ocupado")
                 else:
+                    btn.setStyleSheet("background-color: #334155; color: white; border-radius: 20px;")
                     btn.clicked.connect(lambda checked, s=seat_id, b=btn: self.on_seat_clicked(s, b))
                 
                 self.grid_layout.addWidget(btn, r_idx, c_idx)
@@ -146,26 +147,25 @@ class SeatSelectionDialog(QDialog):
         widget = QWidget()
         layout = QHBoxLayout(widget)
         box = QFrame()
-        box.setFixedSize(15, 15)
-        box.setStyleSheet(f"background-color: {color}; border-radius: 50%;")
+        box.setFixedSize(16, 16)
+        box.setStyleSheet(f"background-color: {color}; border-radius: 8px;")
         layout.addWidget(box)
         layout.addWidget(QLabel(text))
         return widget
 
     def on_seat_clicked(self, seat_id, button):
-        # Resetar botões anteriores
+        # Resetar estilos de todos os botões (Nuclear option para garantir o visual)
         for i in range(self.grid_layout.count()):
-            widget = self.grid_layout.itemAt(i).widget()
-            if isinstance(widget, QPushButton):
-                widget.setProperty("selected", "false")
-                widget.style().unpolish(widget)
-                widget.style().polish(widget)
+            w = self.grid_layout.itemAt(i).widget()
+            if isinstance(w, QPushButton) and w.objectName() == "SeatBtn":
+                if w.property("occupied") == "true":
+                    w.setStyleSheet("background-color: #ef4444; color: #fee2e2; border-radius: 20px; font-weight: bold;")
+                else:
+                    w.setStyleSheet("background-color: #334155; color: white; border-radius: 20px; font-weight: bold;")
         
-        # Selecionar este
+        # Aplicar o verde vibrante no selecionado
         self.selected_seat = seat_id
-        button.setProperty("selected", "true")
-        button.style().unpolish(button)
-        button.style().polish(button)
+        button.setStyleSheet("background-color: #22c55e; color: black; border-radius: 20px; font-weight: 900; border: 2px solid white;")
         
         self.btn_confirmar.setEnabled(True)
         self.btn_confirmar.setText(f"Confirmar Assento: {seat_id}")
