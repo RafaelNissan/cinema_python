@@ -12,57 +12,53 @@ from controllers.inventory_ctrl import InventoryController
 
 STYLE_SHEET_INVENTORY = """
 QDialog {
-    background-color: #0f172a;
+    background-color: #020617;
     color: #f8fafc;
 }
 QLabel {
     color: #f8fafc;
 }
 QLineEdit, QComboBox {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    padding: 8px;
-    border-radius: 4px;
+    background-color: #0f172a;
+    border: 1px solid #1e293b;
+    padding: 10px;
+    border-radius: 8px;
     color: #f8fafc;
 }
 QTableWidget {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 4px;
+    background-color: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
     color: #f8fafc;
-    gridline-color: #334155;
-    selection-background-color: #3b82f6;
+    gridline-color: #1e293b;
+    selection-background-color: #1e293b;
+    selection-color: #3b82f6;
 }
 QHeaderView::section {
-    background-color: #334155;
-    color: #f8fafc;
-    font-weight: bold;
-    padding: 5px;
-    border-bottom: 2px solid #1e293b;
+    background-color: #1e293b;
+    color: #64748b;
+    border: none;
+    border-bottom: 2px solid #020617;
+    padding: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 11px;
 }
 QPushButton {
-    background-color: #334155;
-    color: white;
-    padding: 8px;
-    border-radius: 4px;
+    background-color: #1e293b;
+    color: #f8fafc;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
 }
-QPushButton:hover { background-color: #475569; }
+QPushButton:hover { background-color: #334155; }
 QPushButton.PrimaryBtn {
     background-color: #3b82f6;
     color: white;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 4px;
+    font-weight: 800;
 }
 QPushButton.PrimaryBtn:hover { background-color: #2563eb; }
-QPushButton.WarningBtn {
-    background-color: #f59e0b;
-    color: white;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 4px;
-}
-QPushButton.WarningBtn:hover { background-color: #d97706; }
 """
 
 class ProductFormDialog(QDialog):
