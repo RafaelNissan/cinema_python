@@ -18,9 +18,9 @@ QLabel {
     color: #f8fafc;
 }
 QPushButton.SeatBtn {
-    background-color: #334155;
+    background-color: transparent;
     color: white;
-    border: 1px solid #475569;
+    border: none;
     border-radius: 20px;
     font-weight: bold;
     width: 40px;
@@ -28,7 +28,7 @@ QPushButton.SeatBtn {
     min-width: 40px;
     min-height: 40px;
 }
-QPushButton.SeatBtn:hover { background-color: #475569; }
+QPushButton.SeatBtn:hover { background-color: #334155; }
 QPushButton.SeatBtn[occupied="true"] {
     background-color: #ef4444;
     border: 1px solid #7f1d1d;
@@ -36,8 +36,8 @@ QPushButton.SeatBtn[occupied="true"] {
 }
 QPushButton.SeatBtn[selected="true"] {
     background-color: #22c55e;
-    color: #052e16;
-    border: 2px solid #f0fdf4;
+    color: #000000;
+    font-weight: 800;
 }
 QFrame#Screen {
     background-color: #3b82f6;
@@ -128,7 +128,7 @@ class SeatSelectionDialog(QDialog):
         # Status Legend
         legend_layout = QHBoxLayout()
         legend_layout.addStretch()
-        legend_layout.addWidget(self.create_legend_item("Livre", "#334155"))
+        legend_layout.addWidget(self.create_legend_item("Livre", "transparent"))
         legend_layout.addWidget(self.create_legend_item("Ocupado", "#ef4444"))
         legend_layout.addWidget(self.create_legend_item("Selecionado", "#22c55e"))
         legend_layout.addStretch()
@@ -147,7 +147,10 @@ class SeatSelectionDialog(QDialog):
         layout = QHBoxLayout(widget)
         box = QFrame()
         box.setFixedSize(15, 15)
-        box.setStyleSheet(f"background-color: {color}; border-radius: 3px;")
+        if color == "transparent":
+            box.setStyleSheet(f"background-color: {color}; border: 1px solid #475569; border-radius: 3px;")
+        else:
+            box.setStyleSheet(f"background-color: {color}; border-radius: 3px;")
         layout.addWidget(box)
         layout.addWidget(QLabel(text))
         return widget
