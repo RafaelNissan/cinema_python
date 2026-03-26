@@ -75,20 +75,6 @@ class SeatSelectionDialog(QDialog):
         info_layout.addWidget(lbl_inst)
         main_layout.addWidget(info_widget)
         
-        # Screen Area
-        screen_frame = QFrame()
-        screen_frame.setObjectName("Screen")
-        screen_frame.setFixedHeight(12)
-        screen_frame.setStyleSheet("background-color: #3b82f6; border-radius: 5px;")
-        
-        main_layout.addSpacing(20)
-        lbl_tela = QLabel("TELA")
-        lbl_tela.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        lbl_tela.setStyleSheet("font-weight: bold; font-size: 14px; color: #3b82f6;")
-        main_layout.addWidget(lbl_tela)
-        main_layout.addWidget(screen_frame)
-        main_layout.addSpacing(30)
-        
         # Grid area
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
@@ -125,6 +111,20 @@ class SeatSelectionDialog(QDialog):
 
         scroll.setWidget(grid_widget)
         main_layout.addWidget(scroll)
+
+        # Screen Area (Agora no final, perto da fileira A)
+        main_layout.addSpacing(30)
+        lbl_tela = QLabel("TELA")
+        lbl_tela.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        lbl_tela.setStyleSheet("font-weight: bold; font-size: 14px; color: #3b82f6;")
+        main_layout.addWidget(lbl_tela)
+
+        screen_frame = QFrame()
+        screen_frame.setObjectName("Screen")
+        screen_frame.setFixedHeight(10)
+        screen_frame.setStyleSheet("background-color: #3b82f6; border-radius: 5px;")
+        main_layout.addWidget(screen_frame)
+        main_layout.addSpacing(20)
         
         # Status Legend
         legend_layout = QHBoxLayout()
