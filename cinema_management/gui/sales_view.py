@@ -225,11 +225,19 @@ class SalesView(QDialog):
             self.tbl_produtos.setCellWidget(row, 3, btn_add)
 
     def add_session_to_cart(self, session):
-        # Abrir diálogo de assentos
+        # Buscar assentos da mesma sessão que já estão no carrinho
+        sessao_id = session['id']
+        assentos_no_carrinho = [
+            item['assento_id'] for item in self.carrinho 
+            if item['tipo_item'] == 'ingresso' and item['sessao_id'] == sessao_id
+        ]
+        
+        # Abrir diálogo de assentos passando os ocupados no carrinho
         dialog = SeatSelectionDialog(
-            sessao_id=session['id'],
+            sessao_id=sessao_id,
             filme_titulo=session['filme'],
             sala_nome=session['sala'],
+            cart_seats=assentos_no_carrinho,
             parent=self
         )
         if dialog.exec() == QDialog.DialogCode.Accepted:

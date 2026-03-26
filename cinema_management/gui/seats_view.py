@@ -47,7 +47,7 @@ QFrame#Screen {
 
 class SeatSelectionDialog(QDialog):
     """Diálogo para seleção de assento interativo"""
-    def __init__(self, sessao_id, filme_titulo, sala_nome, parent=None):
+    def __init__(self, sessao_id, filme_titulo, sala_nome, cart_seats=None, parent=None):
         super().__init__(parent)
         self.setWindowTitle(f"Seleção de Assentos - {filme_titulo}")
         self.setMinimumSize(700, 600)
@@ -57,8 +57,9 @@ class SeatSelectionDialog(QDialog):
         self.sala_nome = sala_nome
         self.selected_seat = None
         
-        # Ocupados no banco
-        self.occupied_seats = SalesController.get_occupied_seats(sessao_id)
+        # Ocupados no banco + Ocupados no carrinho local
+        db_occupied = SalesController.get_occupied_seats(sessao_id)
+        self.occupied_seats = list(set(db_occupied + (cart_seats or [])))
         
         self.setup_ui()
 
